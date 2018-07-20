@@ -26,27 +26,16 @@ public class Deck {
 		return cards;
 	}
 
-	public void setCards(List<Card> cards) {
-		this.cards = cards;
-	}
-
 	public int checkDeckSize() {
 //		check deck to see how many cards are left
 		int cardsLeft = cards.size();
 		return cardsLeft;
 	}
 
-	public Card[] dealCard(int input) throws Exception {
+	public Card dealCard() {
 //		remove a card from the deck
-		Card[] cards = new Card[input];
-		if (input > 52) {
-			throw new Exception("Cannot deal more than  52 cards");
-		} else {
-			for (int i = 0; i < input; i++) {
-				cards[i] = this.cards.remove(0);
-			}
-			return cards;
-		}
+		return cards.remove(0);
+
 	}
 
 	public void shuffleDeck() {
