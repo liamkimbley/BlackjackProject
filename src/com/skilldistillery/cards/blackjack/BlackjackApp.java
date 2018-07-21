@@ -6,10 +6,19 @@ import java.util.Scanner;
 
 import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
-import com.skilldistillery.cards.common.Hand;
 
 public class BlackjackApp {
-
+	private Scanner sc = new Scanner(System.in);
+	private int userCardValue = 0;
+	private int dealerCardValue = 0;
+	private List<Card> userHand;
+	private List<Card> dealerHand;
+	private String again = null;
+	private String input;
+	private Card c;
+	private Card d;
+	private Deck deck;
+	
 
 	public static void main(String[] args) {
 
@@ -19,20 +28,17 @@ public class BlackjackApp {
 
 
 	private void run() {
-		Scanner sc = new Scanner(System.in);
-		Deck deck = new Deck();
+		deck = new Deck();
 		deck.shuffleDeck();
-		int userCardValue = 0;
-		int dealerCardValue = 0;
-//		Hand userHand = new BlackjackHand();
-//		Hand dealerHand = new BlackjackHand();
-		List<Card> userHand = new ArrayList<>();
-		List<Card> dealerHand = new ArrayList<>();
+		userHand = new ArrayList<>();
+		dealerHand = new ArrayList<>();
+		
 		System.out.println("Let's Play Blackjack!");
-		Card c = deck.dealCard();
+		do {
+		c = deck.dealCard();
 		userHand.add(c);
 		userCardValue = c.getValue();
-		Card d = deck.dealCard();
+		d = deck.dealCard();
 		dealerHand.add(d);
 		dealerCardValue = d.getValue();
 		c = deck.dealCard();
@@ -41,17 +47,54 @@ public class BlackjackApp {
 		System.out.println("Your hand: ");
 		printHandAndValue(userHand, userCardValue);
 		System.out.println();
-		System.out.println("Dealer hand: ");
 		printHandAndValue(dealerHand, dealerCardValue);
 		System.out.print("Would you like to Hit or Stay? ");
-		String input = sc.nextLine();
-		while ((input.equalsIgnoreCase("HIT")) || userCardValue <= 21) {
-			c = deck.dealCard();
-			userCardValue += c.getValue();
-			printHandAndValue(userHand, userCardValue);
-			System.out.print("Hit or Stay? ");
-			input = sc.nextLine();			
-		}
+		input = sc.nextLine();
+		
+			do {
+				if (input.equalsIgnoreCase("Stay")) {
+					break;
+				}
+				c = deck.dealCard();
+				userHand.add(c);
+				userCardValue += c.getValue();
+				System.out.println("Your hand: ");
+				printHandAndValue(userHand, userCardValue);
+				if (userCardValue >= 21) {
+					break;
+				}
+				System.out.print("Hit or Stay? ");
+				input = sc.nextLine();
+			} while ((input.equalsIgnoreCase("HIT") && userCardValue <= 21));
+			
+			if (userCardValue <= 21) {
+				do {
+					d = deck.dealCard();
+					dealerHand.add(d);
+					dealerCardValue += d.getValue();
+					System.out.println("Dealer hand: ");
+					printHandAndValue(dealerHand, dealerCardValue);
+				} while (dealerCardValue < 17);
+			}
+			
+//			dealer wins if player busts. or dealer cards higher than user cards
+//			user wins if dealer busts. or user cards higher than dealer cards
+			
+			
+			if ((userCardValue > 21)  || (dealerCardValue > userCardValue)){
+				System.out.println("You lose!");
+			}
+			else if ((dealerCardValue > 21) || (userCardValue > dealerCardValue)) {
+				System.out.println("You Win!");
+			}
+			else if (userCardValue == dealerCardValue) {
+				System.out.println("You both have the same value. Hand is pushed.");
+			}
+			System.out.println("Would you like to play again? Y/N");
+			again = sc.nextLine();
+			userHand.clear();
+			dealerHand.clear();
+		} while (again.equalsIgnoreCase("Y"));
 		
 	}
 
@@ -61,8 +104,5 @@ public class BlackjackApp {
 		}
 		System.out.println("Total card value: " + value);
 	}
-	
-	private void hitOrStay() {
-		
-	}
+
 }
