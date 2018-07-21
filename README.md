@@ -15,3 +15,7 @@ The winner of each round will be determined according to the rules of Blackjack 
 * Abstract class
 * Unicode
 * Private Fields
+
+### Stretch Goals Met
+* "Soft Ace" - Ace has the value of 1 or 11
+* Blackjack Hand - If Blackjack is dealt in initial hand, round ends
