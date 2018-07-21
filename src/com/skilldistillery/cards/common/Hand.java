@@ -1,6 +1,5 @@
 package com.skilldistillery.cards.common;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Hand {
@@ -8,7 +7,7 @@ private int value;
 private List<Card> cards;	
 
 	public Hand() {
-		cards = getCards();
+		
 	}
 	
 	public int getHandValue() {
@@ -16,24 +15,24 @@ private List<Card> cards;
 	}
 	
 	public void addCard(Card c) {
+		this.value += c.getValue();
 		cards.add(c);
 	}
 	
 	public List<Card> getCards(){
-// add cards to hand
-		cards = new ArrayList<Card>();
 		return cards;
 	}
 	
 	public void clearHand() {
 		cards.clear();
-	}
-
-	public void setValue(int val) {
-		this.value = val;
+		this.value = 0;
 	}
 
 	public int getValue() {
 		return value;
+	}
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
 	}
 }

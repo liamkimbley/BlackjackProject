@@ -10,6 +10,8 @@ The winner of each round will be determined according to the rules of Blackjack 
 ### Technologies Used
 * Enum
 * Lists
-* Comparable
+* Comparator
 * Collections
-* Exceptions
+* Abstract class
+* Unicode
+* Private Fields

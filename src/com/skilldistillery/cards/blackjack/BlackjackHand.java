@@ -1,11 +1,13 @@
 package com.skilldistillery.cards.blackjack;
 
+import java.util.ArrayList;
+
 import com.skilldistillery.cards.common.Hand;
 
 public class BlackjackHand extends Hand {
 
 	public BlackjackHand() {
-		getCards();
+		setCards(new ArrayList<>());
 	}
 
 	@Override
@@ -13,9 +15,4 @@ public class BlackjackHand extends Hand {
 		return getValue();
 	}
 	
-//	public int setHandValue() {
-//		if (getValue() < 21) {
-//			
-//		}
-//	}
 }
