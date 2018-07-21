@@ -9,13 +9,21 @@ public class BlackjackHandComparator implements Comparator<Hand> {
 
 	@Override
 	public int compare(Hand o1, Hand o2) {
-		if (o1.getHandValue() > o2.getHandValue()) {
-			return 1;
-		}
-		else if (o2.getHandValue() > o1.getHandValue()) {
+		if (o1.getHandValue() > 21) {
 			return -1;
 		}
-		return 0;
+		else if (o2.getHandValue() > 21) {
+			return 1;
+		}
+		else if (o1.getHandValue() > o2.getHandValue()) {
+			return 1;
+		}
+		else if (o1.getHandValue() < o2.getHandValue()) {
+			return -1;
+		}
+		else  {
+			return 0;
+		}
 	}
 
 }
