@@ -11,11 +11,10 @@ private List<Card> cards;
 	}
 	
 	public int getHandValue() {
-		return getValue();
+		return value;
 	}
 	
 	public void addCard(Card c) {
-		this.value += c.getValue();
 		cards.add(c);
 	}
 	
@@ -23,13 +22,13 @@ private List<Card> cards;
 		return cards;
 	}
 	
+	public void setValue(int value) {
+		this.value = value;
+	}
+
 	public void clearHand() {
 		cards.clear();
 		this.value = 0;
-	}
-
-	public int getValue() {
-		return value;
 	}
 
 	public void setCards(List<Card> cards) {
