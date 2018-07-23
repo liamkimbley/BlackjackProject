@@ -33,13 +33,13 @@ public class BlackjackApp {
 	}
 
 	private void run() {
+		System.out.println("Let's Play Blackjack!");
 		deck = new Deck();
 		deck.shuffleDeck();
 		dealerHand = new BlackjackHand();
 		bhc = new BlackjackHandComparator();
 		playerHand = new BlackjackHand();
 
-		System.out.println("Let's Play Blackjack!");
 		playersDeal();
 		dealersDeal();
 
