@@ -45,7 +45,7 @@ public class BlackjackApp {
 
 		blackjack(dealerHand);
 		blackjack(playerHand);
-		
+
 		if (playerHand.getHandValue() < 21) {
 			playerTurn(playerHand);
 		}
@@ -58,7 +58,7 @@ public class BlackjackApp {
 
 		results = bhc.compare(playerHand, dealerHand);
 		winner(results);
-		
+
 		playerHand.clearHand();
 		dealerHand.clearHand();
 	}
@@ -70,7 +70,7 @@ public class BlackjackApp {
 		printHandAndValue(playerHand, playerHand.getHandValue());
 		System.out.println();
 	}
-	
+
 	private void dealersDeal() {
 		dealerHand.addCard(deck.dealCard());
 		System.out.println("Dealer's hand: ");
@@ -111,14 +111,14 @@ public class BlackjackApp {
 
 		return dealerHand;
 	}
-	
+
 	private void blackjack(Hand hand) {
 		if (hand.getCards().size() == 2 && hand.getHandValue() == 21) {
 			System.out.println("Blackjack!");
 			BlackjackApp.main(null);
 		}
 	}
-	
+
 	private void winner(int i) {
 		if (results == -1) {
 			System.out.println("You lose!");

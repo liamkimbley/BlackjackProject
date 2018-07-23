@@ -39,6 +39,7 @@ public class Deck {
 	}
 
 	public void shuffleDeck() {
+		System.out.println("Dealer is shuffling cards...");
 		Collections.shuffle(cards);
 	}
 
